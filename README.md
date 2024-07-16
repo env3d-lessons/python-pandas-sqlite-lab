@@ -2,7 +2,7 @@
 
 Review the lesson at https://github.com/env3d/python-pandas-sqlite-basics 
 
-Put all your functions in a file called *`main.py`*
+Put all your functions in a file called **`main.py`**
 
 Use the title.basic.tsv dataset, create a python function that calculates the average runtime of a particular 
 titleType for a particular year:
