@@ -28,6 +28,10 @@ def test_chunksize():
     with open('./main.py') as f:
         assert 'chunksize' in f.read(), "Must use chunksize in your code"
 
+def test_quote_char():
+    with open('./main.py') as f:
+        assert 'quoting' in f.read(), "Ignore quoute character when calling read_csv: i.e. quoting=csv.QUOTE_NONE"
+
 
 fake_data="""tconst\ttitleType\tprimaryTitle\toriginalTitle\tisAdult\tstartYear\tendYear\truntimeMinutes\tgenres
 tt0000001\tshort\tCarmencita\tCarmencita\t0\t2000\t\\N\t1\tDocumentary,Short
@@ -56,10 +60,8 @@ def write_to_sql(mocker):
     yield None
     os.popen('rm _test.db')
 
-def test_write_to_sql_create_db(write_to_sql, mocker):
-    assert pathlib.Path('./_test.db').is_file()
-
 def test_valid_db(write_to_sql):
+    assert pathlib.Path('./_test.db').is_file()
     assert '8' in os.popen("sqlite3 _test.db  'select count(*)  from titles'").read()
 
 def test_calculate_average_db(write_to_sql, mocker):
